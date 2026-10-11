@@ -1,0 +1,7 @@
+PS C:\Users\azlabadmin.CONTOSO> Invoke-WebRequest -Uri "https://localhost/RDWeb" -UseBasicParsing
+
+StatusCode        : 200
+StatusDescription : OK
+Content-Length    : 14771
+Content-Type      : text/xml; charset=utf-8
+WorkSpaceID field  : vm-onprem-rds01.contoso.local

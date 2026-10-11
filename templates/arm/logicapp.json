@@ -1,0 +1,257 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_la_avd_soc_001_name": {
+            "defaultValue": "la-avd-soc-001",
+            "type": "String"
+        },
+        "connections_azuresentinel_externalid": {
+            "defaultValue": "/subscriptions/Sub-id/resourceGroups/rg-avd-prod-centralindia-001/providers/Microsoft.Web/connections/azuresentinel",
+            "type": "String"
+        },
+        "connections_outlook_externalid": {
+            "defaultValue": "/subscriptions/Sub-id/resourceGroups/rg-avd-prod-centralindia-001/providers/Microsoft.Web/connections/outlook",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2019-05-01",
+            "name": "[parameters('workflows_la_avd_soc_001_name')]",
+            "location": "centralindia",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "Microsoft_Sentinel_incident": {
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azuresentinel-2']['connectionId']"
+                                    }
+                                },
+                                "body": {
+                                    "callback_url": "@listCallbackUrl()"
+                                },
+                                "path": "/incident-creation"
+                            }
+                        }
+                    },
+                    "actions": {
+                        "DEBUG_IncidentData": {
+                            "runAfter": {},
+                            "type": "Compose",
+                            "inputs": {
+                                "ObjectId": "@triggerBody()?['object']?['id']",
+                                "IncidentArmId": "@triggerBody()?['object']?['properties']?['incidentArmId']",
+                                "Object": "@triggerBody()?['object']"
+                            }
+                        },
+                        "Entities_-_Get_Accounts": {
+                            "runAfter": {
+                                "DEBUG_IncidentData": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azuresentinel-2']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "body": "@triggerBody()?['object']?['properties']?['relatedEntities']",
+                                "path": "/entities/account"
+                            }
+                        },
+                        "Send_an_email_(V2)": {
+                            "runAfter": {
+                                "Entities_-_Get_Accounts": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['outlook-1']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "body": {
+                                    "To": "email@example.com",
+                                    "Subject": "[SENTINEL SOAR] @{triggerBody()?['object']?['properties']?['title']}",
+                                    "Body": "[concat('<p><strong>SENTINEL SOAR INCIDENT DETECTED</strong></p><p><strong>Playbook:</strong> ', parameters('workflows_la_avd_soc_001_name'), '</p><p><strong>Execution Reason:</strong> Controlled Security Drill Validation</p><hr><p><strong>Incident:</strong><br>@{triggerBody()?[''object'']?[''properties'']?[''title'']}</p><p><strong>Incident ID:</strong><br>@{triggerBody()?[''object'']?[''id'']}</p><p><strong>Account Entity:</strong><br>@{body(''Entities_-_Get_Accounts'')?[''Accounts'']}</p><p><strong>SOAR Validation:</strong></p><ul><li>Sentinel Analytics Rule triggered</li><li>Sentinel incident created</li><li>Logic App incident trigger executed</li><li>Account entity extracted successfully</li><li>Outlook notification delivered successfully</li></ul><p><strong>Result:</strong> End-to-end Sentinel -&gt; Logic App -&gt; Outlook workflow validated.</p><hr><p><strong>Runtime Debug - Object ID:</strong><br>@{outputs(''DEBUG_IncidentData'')?[''ObjectId'']}</p><p><strong>Runtime Debug - Incident ARM ID:</strong><br>@{outputs(''DEBUG_IncidentData'')?[''IncidentArmId'']}</p></body>')]",
+                                    "Importance": "Normal"
+                                },
+                                "path": "/v2/Mail"
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "type": "Object",
+                        "value": {
+                            "azuresentinel-2": {
+                                "id": "/subscriptions/Sub-id/resourceGroups/rg-avd-prod-centralindia-001/providers/Microsoft.Web/locations/centralindia/managedApis/azuresentinel",
+                                "connectionId": "[parameters('connections_azuresentinel_externalid')]",
+                                "connectionName": "azuresentinel",
+                                "connectionProperties": {}
+                            },
+                            "outlook-1": {
+                                "id": "/subscriptions/Sub-id/resourceGroups/rg-avd-prod-centralindia-001/providers/Microsoft.Web/locations/centralindia/managedApis/outlook",
+                                "connectionId": "[parameters('connections_outlook_externalid')]",
+                                "connectionName": "outlook",
+                                "connectionProperties": {}
+                            }
+                        }
+                    }
+                },
+                "endpointsConfiguration": {
+                    "workflow": {
+                        "outgoingIpAddresses": [
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IPAddress"
+                            },
+                            {
+                                "address": "IPAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "IPAddress"
+                            },
+                            {
+                                "address": "IpAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            }
+                        ],
+                        "accessEndpointIpAddresses": [
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {   
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            }
+                        ]
+                    },
+                    "connector": {
+                        "outgoingIpAddresses": [
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            },
+                            {
+                                "address": "ipAddress"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Logic/workflows/accessKeys",
+            "apiVersion": "2015-02-01-preview",
+            "name": "[concat(parameters('workflows_la_avd_soc_001_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/workflows', parameters('workflows_la_avd_soc_001_name'))]"
+            ],
+            "properties": {}
+        }
+    ]
+}

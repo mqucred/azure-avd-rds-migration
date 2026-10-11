@@ -1,0 +1,25 @@
+﻿Phase 6 - Group membership evidence
+Capture time: 2026-10-09 15:10:00
+Computer: vm-onprem-dc01
+
+User:
+
+
+SamAccountName : avduser01
+SID            : S-1-5-21-1103833467-2665069183-4133319136-1104
+Enabled        : True
+MemberOf       : {CN=GRP-AVD-USERS,OU=AVD_Users,DC=contoso,DC=local}
+
+
+
+
+
+Token groups:
+
+Name          GroupCategory GroupScope
+----          ------------- ----------
+Domain Users       Security     Global
+GRP-AVD-USERS      Security     Global
+
+
+

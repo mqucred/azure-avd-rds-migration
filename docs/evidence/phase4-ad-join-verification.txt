@@ -1,0 +1,40 @@
+PS C:\Users\azlabadmin> Join-AzStorageAccountForAuth `
+    -ResourceGroupName $SpokeRg `
+    -StorageAccountName $StorageAccountName `
+    -DomainAccountType "ComputerAccount" `
+    -OrganizationalUnitDistinguishedName $OuDistinguishedName `
+    -OverwriteExistingADObject
+
+AD join command completed. Verifying...
+
+$sa = Get-AzStorageAccount -ResourceGroupName $SpokeRg -Name $StorageAccountName
+$sa.AzureFilesIdentityBasedAuth | Format-List
+
+DirectoryServiceOptions   : AD
+ActiveDirectoryProperties : Microsoft.Azure.Commands.Management.Storage.Models.PSActiveDirectoryProperties
+DefaultSharePermission    :
+SmbOAuthSettings          :
+
+--- AD computer object confirmation (query by Name, not sAMAccountName) ---
+$ADComp = Get-ADComputer -Filter "Name -eq '$StorageAccountName'" -Properties ServicePrincipalNames, DNSHostName
+
+Found AD computer object: CN=stavdfslogixprod012842,OU=AVD_Hosts,DC=contoso,DC=local
+Current sAMAccountName (truncated by AD): stavdfslog5hk3j$
+cifs/stavdfslogixprod012842.file.core.windows.net
+
+--- Note ---
+sAMAccountName is truncated to 15 characters by AD's own limit -- this is expected,
+not an error. The full storage account name is preserved in the CN/Name attribute
+and in the SPN, which is what Kerberos auth actually relies on. Always query AD
+computer objects for storage accounts by Name, not by the (possibly truncated)
+sAMAccountName -- Get-ADComputer -Identity "<full storage account name>" will fail
+with ADIdentityNotFoundException if the name exceeds 15 characters.
+
+--- Prior failed attempt, for reference ---
+The first attempt at this join failed with:
+  "An AD object 'CN=stavdfslogixprod012842,OU=AVD_Hosts,DC=contoso,DC=local' with a
+  Service Principal Name of cifs/stavdfslogixprod012842.file.core.windows.net already
+  exists within AD... specify -OverwriteExistingADObject to continue."
+This was caused by an earlier, incomplete join attempt leaving a stale AD object.
+-OverwriteExistingADObject (not bare -Force, which only suppresses prompts) resolved
+it on this clean rebuild.

@@ -1,0 +1,48 @@
+Phase 4 share creation: PowerShell parameter gap, portal fallback used
+
+--- What was tried, in order ---
+1. New-AzStorageShare ... -QuotaGiB <int>
+   FAILED: "A parameter cannot be found that matches parameter name 'QuotaGiB'."
+
+2. New-AzStorageShare ... -QuotaGB <int>
+   FAILED: "A parameter cannot be found that matches parameter name 'QuotaGB'."
+
+--- Root cause, confirmed directly ---
+Get-Command New-AzStorageShare -Syntax
+
+New-AzStorageShare [-Name] <string> [-Protocol <string>]
+  [-EnableSnapshotVirtualDirectoryAccess <bool>] [-Context <IStorageContext>]
+  [-ServerTimeoutPerRequest <int>] [-ClientTimeoutPerRequest <int>]
+  [-DefaultProfile <IAzureContextContainer>] [-ConcurrentTaskCount <int>]
+  [-AcquirePolicyToken] [-ChangeReference <string>] [<CommonParameters>]
+
+This installed version of New-AzStorageShare has NO quota parameter at all -- not a
+naming difference between GiB/GB, the cmdlet genuinely does not accept a quota value
+at share-creation time on this Az.Storage version.
+
+--- Correct fix, confirmed via Get-Command -Syntax ---
+Quota must be set as a separate step, via Set-AzStorageShareQuota:
+
+  New-AzStorageShare -Name $ProfilesShareName -Context $ctx
+  Set-AzStorageShareQuota -ShareName $ProfilesShareName -Quota $ProfilesQuotaGB -Context $ctx
+
+Confirmed via:
+  Get-Command Set-AzStorageShareQuota -Syntax
+
+  Set-AzStorageShareQuota [-ShareName] <string> [-Quota] <int> [-Context <IStorageContext>] ...
+  Set-AzStorageShareQuota [-ShareClient] <ShareClient> [-Quota] <int> [-Context <IStorageContext>] ...
+
+--- What was actually done in this run ---
+Both shares (profiles, msix-apps) were created via the Azure Portal instead, with
+quota set directly in the creation dialog, to avoid further delay. This is a valid,
+documented fallback -- not a failure of the scripted approach. Az module cmdlet
+surfaces drift across versions; when a parameter genuinely doesn't exist, checking
+with Get-Command -Syntax (rather than guessing a second or third parameter name) is
+the reliable way to find the truth, and the portal remains a legitimate fallback for
+any single step that a given module version doesn't support as expected.
+
+--- Lesson for future phases ---
+Before assuming a cmdlet parameter name (especially around GiB/GB/TB unit-naming
+conventions, which Microsoft has not applied consistently across all Az cmdlets),
+run Get-Command <cmdlet> -Syntax first. This would have saved two failed attempts
+in this phase alone.

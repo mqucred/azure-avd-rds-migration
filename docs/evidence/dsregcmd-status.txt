@@ -1,0 +1,121 @@
+﻿
++----------------------------------------------------------------------+
+| Device State                                                         |
++----------------------------------------------------------------------+
+
+             AzureAdJoined : YES
+          EnterpriseJoined : NO
+              DomainJoined : YES
+                DomainName : CONTOSO
+           Virtual Desktop : NOT SET
+               Device Name : vm-avd-host-0.contoso.local
+
++----------------------------------------------------------------------+
+| Device Details                                                       |
++----------------------------------------------------------------------+
+
+                  DeviceId : 3e4f4760-8bb1-4557-b2a1-f444bf2c4e6f
+                Thumbprint : 7DFA47D6E5AEC68339EE5173C59272410B607C04
+ DeviceCertificateValidity : [ 2026-10-02 06:10:54.000 UTC -- 2036-10-02 06:40:54.000 UTC ]
+            KeyContainerId : 8e5ba0de-1cc7-4de2-8d31-14361d906c33
+               KeyProvider : Microsoft Platform Crypto Provider
+              TpmProtected : YES
+          DeviceAuthStatus : SUCCESS
+
++----------------------------------------------------------------------+
+| Tenant Details                                                       |
++----------------------------------------------------------------------+
+
+                TenantName : 
+                  TenantId : 4e7e6c9b-73b8-4901-8435-2b6567b35b70
+               AuthCodeUrl : https://login.microsoftonline.com/4e7e6c9b-73b8-4901-8435-2b6567b35b70/oauth2/authorize
+            AccessTokenUrl : https://login.microsoftonline.com/4e7e6c9b-73b8-4901-8435-2b6567b35b70/oauth2/token
+                    MdmUrl : 
+                 MdmTouUrl : 
+          MdmComplianceUrl : 
+               SettingsUrl : 
+            JoinSrvVersion : 2.0
+                JoinSrvUrl : https://enterpriseregistration.windows.net/EnrollmentServer/device/
+                 JoinSrvId : urn:ms-drs:enterpriseregistration.windows.net
+             KeySrvVersion : 1.0
+                 KeySrvUrl : https://enterpriseregistration.windows.net/EnrollmentServer/key/
+                  KeySrvId : urn:ms-drs:enterpriseregistration.windows.net
+        WebAuthNSrvVersion : 1.0
+            WebAuthNSrvUrl : https://enterpriseregistration.windows.net/webauthn/4e7e6c9b-73b8-4901-8435-2b6567b35b70/
+             WebAuthNSrvId : urn:ms-drs:enterpriseregistration.windows.net
+    DeviceManagementSrvVer : 1.0
+    DeviceManagementSrvUrl : https://enterpriseregistration.windows.net/manage/4e7e6c9b-73b8-4901-8435-2b6567b35b70/
+     DeviceManagementSrvId : urn:ms-drs:enterpriseregistration.windows.net
+
++----------------------------------------------------------------------+
+| User State                                                           |
++----------------------------------------------------------------------+
+
+                    NgcSet : NO
+           WorkplaceJoined : NO
+             WamDefaultSet : NO
+
++----------------------------------------------------------------------+
+| SSO State                                                            |
++----------------------------------------------------------------------+
+
+                AzureAdPrt : NO
+       AzureAdPrtAuthority : 
+     AcquirePrtDiagnostics : PRESENT
+      Previous Prt Attempt : 2026-10-02 06:57:35.879 UTC
+            Attempt Status : 0xc00000d0
+             User Identity : avduser02@contoso.local
+           Credential Type : Password
+            Correlation ID : b1a0f7f9-6ead-4c03-bd3f-a881fa5dfde8
+              Endpoint URI : https://login.microsoftonline.com/4e7e6c9b-73b8-4901-8435-2b6567b35b70/oauth2/token
+               HTTP Method : POST
+                HTTP Error : 0x0
+               HTTP status : 400
+         Server Error Code : invalid_request
+  Server Error Description : AADSTS90002: Tenant 'contoso.local' not found. Check to make sure you have the correct tenant ID and are signing into the correct cloud. Check with your subscription administrator, this may happen if there are no active subscriptions for the tenant. Trace ID: b3024816-2d03-45ab-b060-1e68c4bd5300 Correlation ID: b1a0f7f9-6ead-4c03-bd3f-a881fa5dfde8 Timestamp: 2026-10-02 06:57:35Z
+             EnterprisePrt : NO
+    EnterprisePrtAuthority : 
+
++----------------------------------------------------------------------+
+| Diagnostic Data                                                      |
++----------------------------------------------------------------------+
+
+        AadRecoveryEnabled : NO
+    Executing Account Name : CONTOSO\azlabadmin, azlabadmin@contoso.local
+               KeySignTest : PASSED
+
+        DisplayNameUpdated : YES
+          OsVersionUpdated : YES
+           HostNameUpdated : YES
+
+      Last HostName Update : NONE
+
++----------------------------------------------------------------------+
+| IE Proxy Config for Current User                                     |
++----------------------------------------------------------------------+
+
+      Auto Detect Settings : YES
+    Auto-Configuration URL : 
+         Proxy Server List : 
+         Proxy Bypass List : 
+
++----------------------------------------------------------------------+
+| WinHttp Default Proxy Config                                         |
++----------------------------------------------------------------------+
+
+               Access Type : DIRECT
+
++----------------------------------------------------------------------+
+| Ngc Prerequisite Check                                               |
++----------------------------------------------------------------------+
+
+            IsDeviceJoined : YES
+             IsUserAzureAD : NO
+             PolicyEnabled : NO
+          PostLogonEnabled : YES
+            DeviceEligible : NO
+        SessionIsNotRemote : NO
+            CertEnrollment : none
+              PreReqResult : WillNotProvision
+
+For more information, please visit https://www.microsoft.com/aadjerrors

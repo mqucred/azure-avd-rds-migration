@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/AutomationRules/b11b7e4e-348d-47a5-9705-7ab1fd5d9184')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/b11b7e4e-348d-47a5-9705-7ab1fd5d9184')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/AutomationRules",
+            "apiVersion": "2025-01-01-preview",
+            "properties": {
+                "displayName": "AUTO-AVD-FailedSignIn-SOAR",
+                "order": 1,
+                "triggeringLogic": {
+                    "isEnabled": true,
+                    "expirationTimeUtc": null,
+                    "triggersOn": "Incidents",
+                    "triggersWhen": "Created",
+                    "conditions": [
+                        {
+                            "conditionType": "Property",
+                            "conditionProperties": {
+                                "propertyName": "IncidentRelatedAnalyticRuleIds",
+                                "operator": "Contains",
+                                "propertyValues": [
+                                    "/subscriptions/Sub-id/resourceGroups/rg-avd-prod-centralindia-001/providers/Microsoft.OperationalInsights/workspaces/law-avd-secops-001/providers/Microsoft.SecurityInsights/alertRules/af9a201c-7b3a-40ba-b9d4-9bc9b96f6524"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "order": 1,
+                        "actionType": "RunPlaybook",
+                        "actionConfiguration": {
+                            "logicAppResourceId": "/subscriptions/Sub-id/resourceGroups/rg-avd-prod-centralindia-001/providers/Microsoft.Logic/workflows/la-avd-soc-001",
+                            "tenantId": "Tenant-id"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+PS C:\Users\azlabadmin.CONTOSO> Get-RDServer -ConnectionBroker vm-onprem-rds01.contoso.local
+Get-RDServer : The RD Connection Broker server is not available. Verify that you can connect to the RD Connection Broker server.
+At line:1 char:1
++ Get-RDServer
++ ~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,Get-RDServer

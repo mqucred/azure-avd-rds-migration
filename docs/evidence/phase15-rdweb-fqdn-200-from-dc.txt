@@ -1,0 +1,10 @@
+PS C:\Users\azlabadmin> Invoke-WebRequest -Uri "https://vm-onprem-rds01.contoso.local/RDWeb" -UseBasicParsing
+
+StatusCode        : 200
+StatusDescription : OK
+Content-Length    : 14791
+Content-Type      : text/xml; charset=utf-8
+WorkSpaceID field  : vm-onprem-rds01.contoso.local
+
+Run from vm-onprem-dc01 (10.100.1.4), against the RDS VM's full FQDN, over the real
+network path (not localhost) -- confirms DNS, routing, NSG, and TLS all worked correctly.

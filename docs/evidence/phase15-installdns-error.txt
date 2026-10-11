@@ -1,0 +1,19 @@
+PS C:\Users\azlabadmin> Install-ADDSForest -DomainName "contoso.local" -InstallDns -Force
+Input and confirm input for SafeModeAdministratorPassword do not match. Please try again.
+Install-ADDSForest : Verification of prerequisites for Domain Controller promotion failed. The specified
+argument 'InstallDNS' was not recognized.
+At line:1 char:1
++ Install-ADDSForest -DomainName "contoso.local" -InstallDns -Force
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Install-ADDSForest], TestFailedException
+    + FullyQualifiedErrorId : Test.VerifyDcPromoCore.DCPromo.General.77,Microsoft.DirectoryServices.Deployment.PowerShell.Commands.InstallADDSForestCommand
+
+Message
+-------
+Verification of prerequisites for Domain Controller promotion failed. The specified argument 'InstallDNS' ...
+
+--- ROOT CAUSE (confirmed after investigation) ---
+Not a syntax error. DNS was already present/configured on this VM from an earlier
+promotion attempt. -InstallDns correctly refused to reconfigure DNS that already existed.
+Fix: omit -InstallDns on retry once DNS is already present and correctly set up.
+See docs/phase-10-troubleshooting/README.md, Issue 2, for the full writeup.

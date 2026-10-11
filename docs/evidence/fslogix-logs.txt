@@ -1,0 +1,150 @@
+﻿[12:27:36.825][tid:00000c0c.00000210][INFO]             Renaming corrupt user profile disk. From: \\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd To: \\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\CORRUPT_25de8fbd-44c5-4858-bea7-ee1277e497b4_Profile_avduser02.vhd
+[12:27:36.825][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\CorruptDiskFilename = 'CORRUPT_25de8fbd-44c5-4858-bea7-ee1277e497b4_Profile_avduser02.vhd'
+[12:27:36.872][tid:00000c0c.00000210][INFO]             FindFile returning after 11 milliseconds
+[12:27:36.872][tid:00000c0c.00000210][INFO]             DiskContext::find returning after 11 milliseconds
+[12:27:36.872][tid:00000c0c.00000210][INFO]             DiskContext::lockWithStrategy returning after 0 milliseconds
+[12:27:36.872][tid:00000c0c.00000210][INFO]             Rename was successful
+[12:27:36.872][tid:00000c0c.00000210][INFO]             FindFile returning after 0 milliseconds
+[12:27:36.872][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\SIDDirNamePattern.  Using default: %sid%_%username%
+[12:27:36.872][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\VHDNamePattern.  Using default: Profile_%username%
+[12:27:36.904][tid:00000c0c.00000210][INFO]             LocalDisk::find checking access returning after 26 milliseconds
+[12:27:36.904][tid:00000c0c.00000210][INFO]             DiskContext::find returning after 26 milliseconds
+[12:27:36.904][tid:00000c0c.00000210][INFO]             DiskContext::lockWithStrategy returning after 0 milliseconds
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\DisableRegistryLocalRedirect.  Using default: 1
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\IsDynamic.  Using default: 1
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\VHDXSectorSize.  Using default: 0
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Profile VHD not found.  Creating new VHD.
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\DirectAttachOnCreateVHD.  Using default: 0
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\SIDDirSDDL.  Using default: 
+[12:27:36.904][tid:00000c0c.00000210][INFO]             VHD containing folder created with no ACLs
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Virtual HD type: vhd
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Virtual HD sector size: 0
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\SizeInMBs.  Using default: 30000
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Virtual HD size (MBs): 30000
+[12:27:36.904][tid:00000c0c.00000210][INFO]             Virtual HD is: Dynamic
+[12:27:36.904][tid:00000c0c.00000210][INFO]           ===== Begin Session:   Create Formatted Disk
+[12:27:37.138][tid:00000c0c.00000210][INFO]              Created vhd(x): \\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd
+[12:27:37.232][tid:00000c0c.00000210][INFO]              Attached vhd(x) successfully
+[12:27:37.232][tid:00000c0c.00000210][INFO]              VHD(x) attach request returning after 89 milliseconds
+[12:27:37.232][tid:00000c0c.00000210][INFO]              Attached to vhd(x)
+[12:27:39.294][tid:00000c0c.00000210][INFO]              Initialized vhd(x)
+[12:27:39.310][tid:00000c0c.00000c10][INFO]              Volume attach event
+[12:27:39.310][tid:00000c0c.00000210][INFO]              VHD(x) GetVirtualDiskPhysicalPath request returning after 0 milliseconds
+[12:27:39.310][tid:00000c0c.00000210][INFO]              VHD(x) FindFirstVolume request returning after 0 milliseconds
+[12:27:39.341][tid:00000c0c.00000210][INFO]              VHD(x) loop through volumes returning after 25 milliseconds, volumes tested: 3
+[12:27:39.341][tid:00000c0c.00000210][INFO]              VHD(x) getVolumeGUIDFromPhysicalPath request returning after 25 milliseconds
+[12:27:39.372][tid:00000c0c.00000210][INFO]              VHD(x) volume online request returning after 39 milliseconds
+[12:27:39.372][tid:00000c0c.00000210][INFO]              VHD(x) waitForVolumeMount request returning after 81 milliseconds
+[12:27:39.372][tid:00000c0c.00000210][INFO]              Mounted vhd(x)
+[12:27:39.888][tid:00000c0c.00000210][INFO]              Format complete
+[12:27:39.888][tid:00000c0c.00000210][INFO]              Formatted vhd(x): \\?\Volume{57250d4e-21a7-4e35-b3a1-207f9d9c71f3}\
+[12:27:40.091][tid:00000c0c.00000210][INFO]              Detached vhd(x)
+[12:27:40.091][tid:00000c0c.00000210][INFO]              VHD(x) Detach request returning after 196 milliseconds
+[12:27:40.091][tid:00000c0c.00000210][INFO]              Successfully detached vhd(x)
+[12:27:40.107][tid:00000c0c.00000c10][INFO]              Configuration setting not found: SOFTWARE\FSLogix\Profiles\ReAttachRetryCount.  Using default: 60
+[12:27:40.107][tid:00000c0c.00000c10][INFO]              Configuration setting not found: SOFTWARE\FSLogix\Profiles\ReAttachIntervalSeconds.  Using default: 10
+[12:27:40.107][tid:00000c0c.00000c10][INFO]           ===== Begin Session:    Volume re-attach
+[12:27:40.107][tid:00000c0c.00000c10][INFO]               Session configuration read (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\LogonStage = '0'(Logon)
+[12:27:40.107][tid:00000c0c.00000c10][INFO]           ===== End Session:    Volume re-attach
+[12:27:40.216][tid:00000c0c.00000210][INFO]              Expanding virtual disk size, SizeInBytes: 30000.00 MB > VirtualDiskSize: 100.00 MB
+[12:27:40.357][tid:00000c0c.00000210][INFO]              ExpandVirtualDiskSize returning after 146 milliseconds
+[12:27:40.513][tid:00000c0c.00000210][INFO]              Attached vhd(x) successfully
+[12:27:40.513][tid:00000c0c.00000210][INFO]              VHD(x) attach request returning after 50 milliseconds
+[12:27:40.513][tid:00000c0c.00000210][INFO]              VHD(x) attached: \\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd
+[12:27:40.513][tid:00000c0c.00000c10][INFO]              Volume attach event
+[12:27:40.513][tid:00000c0c.00000210][INFO]              VHD(x) GetVirtualDiskPhysicalPath request returning after 0 milliseconds
+[12:27:40.513][tid:00000c0c.00000210][INFO]              VHD(x) FindFirstVolume request returning after 0 milliseconds
+[12:27:40.701][tid:00000c0c.00000210][INFO]              VHD(x) loop through volumes returning after 185 milliseconds, volumes tested: 3
+[12:27:40.701][tid:00000c0c.00000210][INFO]              VHD(x) getVolumeGUIDFromPhysicalPath request returning after 186 milliseconds
+[12:27:40.701][tid:00000c0c.00000210][INFO]              VHD(x) volume online request returning after 0 milliseconds
+[12:27:40.701][tid:00000c0c.00000210][INFO]              VHD(x) waitForVolumeMount request returning after 195 milliseconds
+[12:27:40.701][tid:00000c0c.00000210][INFO]              VHD(x) Mounted: \\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd, VolumeName: \\?\Volume{57250d4e-21a7-4e35-b3a1-207f9d9c71f3}\
+[12:27:40.701][tid:00000c0c.00000210][INFO]              DiskContext::mount returning after 328 milliseconds
+[12:27:40.794][tid:00000c0c.00000210][INFO]              GrowVirtualDiskPartition returning after 66 milliseconds
+[12:27:40.794][tid:00000c0c.00000210][INFO]           ===== End Session:   Create Formatted Disk
+[12:27:40.872][tid:00000c0c.00000210][INFO]             Do Nothing, SizeInBytes: 30000.00 MB <= VirtualDiskSize: 30000.00 MB
+[12:27:40.872][tid:00000c0c.00000210][INFO]             User Profile Path: 
+[12:27:40.872][tid:00000c0c.00000210][INFO]             Volume name: \\?\Volume{57250d4e-21a7-4e35-b3a1-207f9d9c71f3}\
+[12:27:40.872][tid:00000c0c.00000210][INFO]             Reason set to 0: The container is attached
+[12:27:40.888][tid:00000c0c.00000210][INFO]             queryFreeDiskSpace returning after 0 milliseconds
+[12:27:40.888][tid:00000c0c.00000210][INFO]             vhd(x) \\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd has 29983.98 MB left (99.95 % free)
+[12:27:40.888][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\CleanOutNotifications.  Using default: 1
+[12:27:40.888][tid:00000c0c.00000210][INFO]             Cleaning out notifications
+[12:27:40.888][tid:00000c0c.00000210][INFO]             Status set to 100: Waiting for the Windows Profile Service to determine the user's profile folder
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDRootFilePath = '\\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDRWDiffDiskFilePath = '\\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\RW.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDRODiffDiskFilePath = 'C:\Windows\TEMP\S-1-5-21-1103833467-2665069183-4133319136-1105_RO.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Profile refcount incremented to: 1
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\RefCount = '1'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\CleanOutNotifications.  Using default: 1
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Cleaning out notifications
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Load user classes hive to perform operations for roam
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Classes hive: \AppData\Local\Microsoft\Windows\UsrClass.dat was not found.
+[12:27:40.935][tid:00000c0c.00000210][INFO]             OneDriveTemp setup
+[12:27:40.935][tid:00000c0c.00000210][INFO]             C:\OneDriveTemp\S-1-5-21-1103833467-2665069183-4133319136-1105 --> \\?\Volume{57250d4e-21a7-4e35-b3a1-207f9d9c71f3}\ODTemp
+[12:27:40.935][tid:00000c0c.00000210][INFO]             OneDriveTemp setup successful
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\CleanOutNotifications.  Using default: 1
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Cleaning out notifications
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\PreventLoginWithFailure.  Using default: 0
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\AccessNetworkAsComputerObject = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\CleanupRecycleBin = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\DeleteLocalProfileWhenVHDShouldApply = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\DirectAttachOnCreateVHD = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\DisableRegistryLocalRedirect = '1'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\FrxshellErrorCode = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\FrxshellStatus = '200'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\FrxshellReason = '5'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\IsDynamic = '1'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\LockedRetryCount = '12'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\LockedRetryInterval = '5'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\NoProfileContainingFolder = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\ProfileType = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\ReAttachAttempted = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\RedirectType = '2'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\RefCount = '1'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\SizeInMBs = '30000'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDXSectorSize = '0'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\WindowsSessionID = '6'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\AttachVHDSDDL = 'D:AI(A;;GA;;;SY)(A;;GA;;;BA)(A;;GA;;;BU)(A;;GA;;;WD)(A;;GA;;;RC)(A;;GA;;;AC)S:(ML;;NW;;;LW)'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\CorruptDiskFilename = 'CORRUPT_25de8fbd-44c5-4858-bea7-ee1277e497b4_Profile_avduser02.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\SIDDirSDDL = ''
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDRODiffDiskFilePath = 'C:\Windows\TEMP\S-1-5-21-1103833467-2665069183-4133319136-1105_RO.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDRWDiffDiskFilePath = '\\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\RW.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\VHDRootFilePath = '\\stavdfslogixprod012842.file.core.windows.net\profiles\S-1-5-21-1103833467-2665069183-4133319136-1105_avduser02\Profile_avduser02.vhd'
+[12:27:40.935][tid:00000c0c.00000210][INFO]             LoadProfile successful. Version: 3.26.826.17182 User: avduser02. SID: S-1-5-21-1103833467-2665069183-4133319136-1105. SessionId: 6
+[12:27:40.935][tid:00000c0c.00000210][INFO]             loadProfile time: 5034 milliseconds
+[12:27:40.935][tid:00000c0c.00000210][INFO]             Configuration setting not found: SOFTWARE\FSLogix\Profiles\ProfileType.  Using default: 0
+[12:27:40.935][tid:00000c0c.00000210][INFO]           ===== End Session:  LoadProfile: avduser02
+[12:27:40.935][tid:00000c0c.00000210][INFO]           ===== End Session: Logon
+[12:27:41.029][tid:00000c0c.00002d74][INFO]           Session configuration read (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\ActivityId = '66414480-3cb3-4477-ae1f-6d3c85e10000'
+[12:27:41.029][tid:00000c0c.00002d74][INFO]           ===== Begin Session: Profile Directory Changed: S-1-5-21-1103833467-2665069183-4133319136-1105
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            New Profile Directory: C:\Users\TEMP
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\ProfileDirSDDL.  Using default: 
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\KeepLocalDir.  Using default: 0
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            Successfully created with ACLs: \\?\Volume{57250d4e-21a7-4e35-b3a1-207f9d9c71f3}\Profile
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            Added redirection C:\Users\TEMP -> \\?\Volume{57250d4e-21a7-4e35-b3a1-207f9d9c71f3}\Profile
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            Local temp directory: C:\Users\local_TEMP
+[12:27:41.029][tid:00000c0c.00002d74][INFO]            Successfully handled: S-1-5-21-1103833467-2665069183-4133319136-1105
+[12:27:41.029][tid:00000c0c.00002d74][INFO]           ===== End Session: Profile Directory Changed: S-1-5-21-1103833467-2665069183-4133319136-1105
+[12:27:42.185][tid:00000c0c.00000210][INFO]           ===== Begin Session: Post Profiles Logon
+[12:27:42.185][tid:00000c0c.00000210][INFO]            User: S-1-5-21-1103833467-2665069183-4133319136-1105 (avduser02)
+[12:27:42.185][tid:00000c0c.00000210][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\LogonSyncMutexTimeout.  Using default: 60000
+[12:27:42.185][tid:00000c0c.00000210][INFO]            Acquired post logon lock for user avduser02 (SID=S-1-5-21-1103833467-2665069183-4133319136-1105) (Elapsed time: 0)
+[12:27:42.185][tid:00000c0c.00000210][INFO]            Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\LogonStage = '1'(PostProfilesLogon)
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Include group SID: S-1-5-21-1097071997-411282250-1050324614-1000
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Exclude group SID: S-1-5-21-1097071997-411282250-1050324614-1001
+[12:27:42.216][tid:00000c0c.00000210][INFO]            User is a member of the include group
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\IgnoreNonWVD.  Using default: 0
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Configuration Read (DWORD): SOFTWARE\FSLogix\Profiles\Enabled.  Data: 1
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Session configuration read (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\RefCount = '1'
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Checking Profile Data Export for S-1-5-21-1103833467-2665069183-4133319136-1105
+[12:27:42.216][tid:00000c0c.00000210][INFO]            This profile is marked as a temporary profile
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Will not export profile information
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Reason set to 7: Profile is a Windows temporary profile
+[12:27:42.216][tid:00000c0c.00000210][INFO]            ErrorCode set to -2146893788 - Message: The profile for the user is a temporary profile.
+[12:27:42.216][tid:00000c0c.00000210][WARN: 80090024]  User S-1-5-21-1103833467-2665069183-4133319136-1105 is being logged in with a Windows temporary profile (The profile for the user is a temporary profile.)
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\FSLogixShellPath.  Using default: 
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\PreventLoginWithFailure.  Using default: 0
+[12:27:42.216][tid:00000c0c.00000210][INFO]            Configuration setting not found: SOFTWARE\FSLogix\Profiles\PreventLoginWithTempProfile.  Using default: 0
+[12:27:42.247][tid:00000c0c.00000210][INFO]            Session configuration wrote (DWORD): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1105\LogonStage = '5'(Logon_Complete)
+[12:27:42.247][tid:00000c0c.00000210][INFO]           ===== End Session: Post Profiles Logon

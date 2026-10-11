@@ -1,0 +1,11 @@
+=== POST-LAUNCH VERIFICATION ===
+Get-AppxPackage -AllUsers | Where-Object { $_.Name -like "*NotepadPlusPlus*" }
+
+Found TWO packages initially:
+1. NotepadPlusPlus (real Notepad++ cert, v1.0.0.0) -- installed for azlabadmin,
+   leftover from an earlier Add-AppxPackage -AllowUnsigned manifest-check step
+   that wasn't fully removed. REMOVED via:
+   Get-AppxPackage -Name "NotepadPlusPlus" -AllUsers | Remove-AppxPackage -AllUsers
+2. NotepadPlusPlus.AVDLab (CN=AVD-Lab-MSIX, v8.8.8.0) -- the real App Attach
+   package, installed for avduser02 via App Attach. CONFIRMED REMAINING after
+   cleanup -- this is the correct, sole evidence of App Attach delivery.

@@ -1,0 +1,52 @@
+Phase 7 App Attach — full evidence trail (CIM failure, VHDX pivot, PowerShell bypass)
+
+=== CIM ATTEMPT (abandoned) ===
+Error expanding msix app attach package. The MSIX Application metadata expand
+request failed on all Session Hosts that it was sent to. Session Host:
+vm-avd-host-0, Native error when mounting CIM, HResult -2147024809, ErrorCode 87.
+(0x80070057 / ERROR_INVALID_PARAMETER)
+
+Mount-CimDiskImage direct attempt: "Too many posts were made to a semaphore" (Error 298)
+
+Checked and ruled out: Azure Files TCP 445 (OK), SYSTEM access to share (OK),
+CimFS/WCIFS drivers present and running (OK), KB5129242 installed + rebooted
+(error persisted), VirtualMachinePlatform correctly disabled, CimDiskImage
+module v2302.1 present.
+
+Hypothesis (not conclusively proven): CIM built on Win11 25H2 packaging
+environment, session host on Win10 Enterprise multi-session 23H2 — version
+mismatch in CIM format (V2 vs V3) per documented community findings.
+
+=== VHDX FALLBACK (succeeded) ===
+msixmgr -Unpack -create -fileType VHDX -vhdSize 1024 -> SUCCESS
+Local mount -> D:\, GPT, Online, Healthy, NTFS, ~1GB
+MSIX manifest found: NotepadPlusPlus.AVDLab v8.8.8.0 x64, app NOTEPAD,
+dependency Microsoft.WindowsAppRuntime.1.4
+
+=== SIGNING ===
+SignTool 10.0.28000.0 -> FAILED: "file format cannot be signed, not recognized"
+SignTool 10.0.18362.0 -> SUCCESS: 1 signed, 0 warnings, 0 errors
+Certificate: CN=AVD-Lab-MSIX, valid until 2027-10-04
+
+
+=== APP ATTACH PACKAGE CREATION ===
+Portal attempt: FAILED -- "Failed to create app attach undefined", generic
+Resource Not Found page on click-through.
+
+PowerShell bypass (Az.DesktopVirtualization 6.0.0):
+Import-AzWvdAppAttachPackageInfo -> SUCCESS (metadata parsed)
+New-AzWvdAppAttachPackage -> SUCCESS
+  Package: NotepadPlusPlus.AVDLab, Version 8.8.8.0
+  Display name: Notepad++ AVD Lab
+  State: Active, Registration: On-demand
+  PackageFamilyName: NotepadPlusPlus.AVDLab_d0s1sp7d7stb0
+
+Host pool association: initially empty ({}), fixed via portal, confirmed via
+Get-AzWvdAppAttachPackage showing HostPoolReference: hp-avd-prod-01
+
+=== USER ASSIGNMENT AND LAUNCH ===
+User assigned via portal. avduser01 hit an unrelated WVD web client sign-in
+error (blue screen, incognito mode) -- not investigated further, not a
+blocker, logged as a loose thread in Phase 10.
+avduser02 signed in successfully, Notepad++ confirmed visible and launched.
+

@@ -1,0 +1,30 @@
+PS C:\Users\azlabadmin> $AccessKey = (Get-AzStorageAccountKey -ResourceGroupName $SpokeRg -Name $StorageAccountName)[0].Value
+$TargetEndpoint = "$StorageAccountName.file.core.windows.net"
+
+net use * /delete /yes
+cmdkey /add:$TargetEndpoint /user:"AZURE\$StorageAccountName" /pass:$AccessKey
+net use Z: "\\$TargetEndpoint\$ProfilesShareName"
+
+if (Test-Path "Z:\") {
+    icacls Z:\ /grant "CONTOSO\GRP-AVD-USERS:(OI)(CI)M"
+    icacls Z:\ /grant "CREATOR OWNER:(OI)(CI)(IO)(F)"
+}
+
+There are no entries in the list.
+The command completed successfully.
+
+processed file: Z:\
+Successfully processed 1 files; Failed processing 0 files
+processed file: Z:\
+Successfully processed 1 files; Failed processing 0 files
+NTFS ACLs applied.
+
+Z: was deleted successfully.
+CMDKEY: Credential deleted successfully.
+
+--- Note ---
+This step used the storage account key, deliberately and narrowly, only for this
+one-time root ACL bootstrap. This is a legitimate, limited use of the key (admin
+setup), not a substitute for Kerberos auth in normal day-to-day access -- end users
+and session hosts authenticate via AD Kerberos (confirmed working, see
+phase4-ad-join-verification.txt), not the storage key.

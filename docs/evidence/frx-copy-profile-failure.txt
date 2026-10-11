@@ -1,0 +1,48 @@
+Phase 6 - Relevant FSLogix Log Extract
+Source: Profile-20261002.log
+Purpose: Preserve relevant evidence for avduser01 profile troubleshooting.
+
+SCOPE NOTE
+This is an extract from the FSLogix Profile service log, NOT the original console output of frx.exe copy-profile. The searched log contains no copy-profile, Incorrect function, 0x00000001, or FRXTEST entries. It therefore does not reproduce the standalone FRX failure or clean-profile control output.
+
+============================================================
+1. KEY FINDING: FSLOGIX RECORDED A CORRUPT PROFILE CONTAINER
+Log time: 16:33:41.473
+
+[16:33:41.473][tid:00000c0c.00001918][INFO] Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1104\CorruptDiskFilename = 'CORRUPT_2532a030-1af3-4444-836e-d2771dbc53ed_Profile_avduser01.VHDX'
+
+Configured container path recorded in the same session:
+
+[16:33:41.473][tid:00000c0c.00001918][INFO] Session configuration wrote (REG_SZ): SOFTWARE\FSLogix\Profiles\Sessions\S-1-5-21-1103833467-2665069183-4133319136-1104\VHDRootFilePath = '\\stavdfslogixprod012842.file.core.windows.net\profiles\avduser01_S-1-5-21-1103833467-2665069183-4133319136-1104\Profile_avduser01.VHDX'
+
+============================================================
+2. PROFILE LOAD ENTRY FOLLOWED BY TEMPORARY-PROFILE WARNING
+
+[16:33:41.473][tid:00000c0c.00001918][INFO] LoadProfile successful. Version: 3.26.826.17182 User: avduser01. SID: S-1-5-21-1103833467-2665069183-4133319136-1104. SessionId: 11
+
+[16:33:41.551][tid:00000c0c.000018dc][INFO] New Profile Directory: C:\Users\TEMP
+
+[16:33:42.707][tid:00000c0c.00001918][INFO] This profile is marked as a temporary profile
+[16:33:42.707][tid:00000c0c.00001918][INFO] Will not export profile information
+[16:33:42.707][tid:00000c0c.00001918][INFO] Reason set to 7: Profile is a Windows temporary profile
+[16:33:42.707][tid:00000c0c.00001918][INFO] ErrorCode set to -2146893788 - Message: The profile for the user is a temporary profile.
+[16:33:42.707][tid:00000c0c.00001918][WARN: 80090024] User S-1-5-21-1103833467-2665069183-4133319136-1104 is being logged in with a Windows temporary profile (The profile for the user is a temporary profile.)
+
+============================================================
+3. SAME TEMPORARY-PROFILE CONDITION EARLIER IN THE LOG
+
+[16:32:55.792][tid:00000c0c.00002488][INFO] This profile is marked as a temporary profile
+[16:32:55.792][tid:00000c0c.00002488][INFO] Will not export profile information
+[16:32:55.792][tid:00000c0c.00002488][INFO] Reason set to 7: Profile is a Windows temporary profile
+[16:32:55.792][tid:00000c0c.00002488][INFO] ErrorCode set to -2146893788 - Message: The profile for the user is a temporary profile.
+[16:32:55.792][tid:00000c0c.00002488][WARN: 80090024] User S-1-5-21-1103833467-2665069183-4133319136-1104 is being logged in with a Windows temporary profile (The profile for the user is a temporary profile.)
+
+============================================================
+4. INTERPRETATION
+- Direct evidence: FSLogix recorded a CorruptDiskFilename value for Profile_avduser01.VHDX.
+- Direct evidence: avduser01 was treated as using a Windows temporary profile, and profile data export was skipped.
+- The “LoadProfile successful” line does not negate the later corruption/temporary-profile evidence.
+- This log does not prove that the separate frx copy-profile command returned 0x00000001. That error is known from the previously retained console/screenshot evidence, not this log.
+- The clean-profile control result (FRXTEST_cleanprofile.vhdx created successfully) is known from project notes, but does not appear in this log.
+
+END OF EXTRACT

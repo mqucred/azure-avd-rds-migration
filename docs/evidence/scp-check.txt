@@ -1,0 +1,55 @@
+﻿============================================================
+Phase 3 verification — captured 2026-09-30 22:01:34
+============================================================
+
+=== 1. Broad SCP search ===
+
+Name                                 DistinguishedName                                                                                                             whenCrea
+                                                                                                                                                                   ted     
+----                                 -----------------                                                                                                             --------
+62a0ff2e-97b9-4513-943f-0d221bd30080 CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,CN=Configuration,DC=contoso,DC=local 9/30/...
+
+
+
+
+=== 2. Device Registration Configuration container contents ===
+
+Name                                 ObjectClass            DistinguishedName                                                                                              
+----                                 -----------            -----------------                                                                                              
+Device Registration Configuration    container              CN=Device Registration Configuration,CN=Services,CN=Configuration,DC=contoso,DC=local                          
+62a0ff2e-97b9-4513-943f-0d221bd30080 serviceConnectionPoint CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,CN=Configuration,DC...
+
+
+
+
+=== 3. Sync scheduler state ===
+
+
+AllowedSyncCycleInterval            : 00:30:00
+CurrentlyEffectiveSyncCycleInterval : 00:30:00
+CustomizedSyncCycleInterval         : 
+NextSyncCyclePolicyType             : Delta
+NextSyncCycleStartTimeInUTC         : 9/30/2026 4:31:34 PM
+PurgeRunHistoryInterval             : 7.00:00:00
+SyncCycleEnabled                    : True
+MaintenanceEnabled                  : True
+StagingModeEnabled                  : False
+SchedulerSuspended                  : False
+SyncCycleInProgress                 : True
+
+
+
+
+
+=== 4. Last sync run results ===
+
+RunNumber RunProfileName       Result  StartDate            EndDate             
+--------- --------------       ------  ---------            -------             
+        3 Export               success 9/30/2026 4:01:39 PM 9/30/2026 4:01:47 PM
+        2 Full Synchronization success 9/30/2026 4:01:39 PM 9/30/2026 4:01:39 PM
+        2 Full Synchronization success 9/30/2026 4:01:38 PM 9/30/2026 4:01:38 PM
+        1 Full Import          success 9/30/2026 4:01:33 PM 9/30/2026 4:01:38 PM
+        1 Full Import          success 9/30/2026 4:01:33 PM 9/30/2026 4:01:33 PM
+
+
+
